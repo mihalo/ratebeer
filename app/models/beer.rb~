@@ -11,6 +11,6 @@ def average_rating
     end
 
   score/ar.length
-  end
+end
 
 end
