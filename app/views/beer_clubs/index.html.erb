@@ -1,0 +1,13 @@
+<h2>List of beer clubs</h2>
+
+<p>
+  <%= link_to 'New beer club', new_beer_club_path %>
+</p>
+
+<p>Number of beer clubs <%= @beer_clubs.count %></p>
+
+<ul>
+  <% @beer_clubs.each do |club| %>
+      <li> <%= link_to club.name, club %> <%= link_to 'delete', beer_club_path(club.id), method: :delete, data:  { confirm: 'Are you sure?' } %> </li>
+  <% end %>
+</ul>

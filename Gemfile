@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 group :development, :test do
   gem "better_errors"
-
-  #...
 end
+
+gem 'bcrypt', '~> 3.1.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
