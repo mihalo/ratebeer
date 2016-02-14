@@ -45,7 +45,18 @@ describe "Rating" do
 
     expect(page).to have_content "Has made 1 ratings"
 
-    save_and_open_page
+  end
+
+  it "user can delete its own rating" do
+    user.ratings << FactoryGirl.create(:rating, beer: beer1, user: user)
+    visit user_path(user)
+
+    expect {
+      click_link "delete"
+    }.to change {user.ratings.count}.from(1).to(0)
+
+    expect(page).to have_content "Has made 0 ratings"
+    
   end
 
 end
