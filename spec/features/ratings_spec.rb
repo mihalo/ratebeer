@@ -66,7 +66,6 @@ describe "Rating" do
     expect(page).to have_content "Favorite beer style is Lager"
     expect(page).to have_content "Favorite brewery is Koff"
 
-    save_and_open_page
   end
 
 
