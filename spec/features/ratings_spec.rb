@@ -7,6 +7,7 @@ describe "Rating" do
   let!(:beer1) { FactoryGirl.create :beer, name: "iso 3", brewery: brewery }
   let!(:beer2) { FactoryGirl.create :beer, name: "Karhu", brewery: brewery }
   let!(:user) { FactoryGirl.create :user }
+  let!(:user2) { FactoryGirl.create :user2 }
 
   before :each do
     sign_in(username: "Pekka", password: "Foobar1")
@@ -26,14 +27,25 @@ describe "Rating" do
     expect(beer1.average_rating).to eq(15.0)
   end
 
-  it "" do
-    user.ratings << FactoryGirl.create(:rating, beer:beer1, user:user)
-    user.ratings << FactoryGirl.create(:rating2, beer:beer2, user:user)
+  it "shows right ratings on ratings page" do
+    user.ratings << FactoryGirl.create(:rating, beer: beer1, user: user)
+    user.ratings << FactoryGirl.create(:rating2, beer: beer2, user: user)
     visit ratings_path
 
     expect(Rating.count).to eq(2)
     expect(page).to have_content "Number of ratings 2"
 
+  end
+
+  it "shows right ratings on user's page" do
+    user.ratings << FactoryGirl.create(:rating, beer: beer1, user: user)
+    user2.ratings << FactoryGirl.create(:rating, beer: beer1, user: user2)
+
+    visit user_path(user)
+
+    expect(page).to have_content "Has made 1 ratings"
+
+    save_and_open_page
   end
 
 end
