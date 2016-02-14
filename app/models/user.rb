@@ -9,6 +9,17 @@ class User < ActiveRecord::Base
   has_many :beer_clubs, through: :memberships
 
   validates :username, uniqueness: true, length: {minimum: 3, maximum: 15}
-  validates :password, length: {minimum: 4}, format: { with: /[A-Z]+/ }
+  validates :password, length: {minimum: 4}, format: {with: /[A-Z]+/}
+
+  def favorite_beer
+    return nil if ratings.empty?
+    ratings.order(score: :desc).limit(1).first.beer
+  end
+
+  def favorite_style
+    return nil if ratings.empty?
+    ratings.joins(:beer).group(:style).average(:score).max_by { |k, v| v }.first
+  end
+
 
 end
