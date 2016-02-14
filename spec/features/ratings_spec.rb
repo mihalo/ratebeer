@@ -56,7 +56,18 @@ describe "Rating" do
     }.to change {user.ratings.count}.from(1).to(0)
 
     expect(page).to have_content "Has made 0 ratings"
-    
+
   end
+
+  it "userpage have favorite style and favorite brewery" do
+    user.ratings << FactoryGirl.create(:rating, beer: beer1, user: user)
+    visit user_path(user)
+
+    expect(page).to have_content "Favorite beer style is Lager"
+    expect(page).to have_content "Favorite brewery is Koff"
+
+    save_and_open_page
+  end
+
 
 end

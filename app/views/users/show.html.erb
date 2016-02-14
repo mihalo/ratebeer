@@ -3,7 +3,12 @@
 <h1><%= @user.username %></h1>
 
 <p>Has made <%= @user.ratings.count %> ratings, average <%= @user.average_rating %></p>
-<p>Favorite beer style is <%= @user.favorite_style %></p>
+<% if @user.favorite_beer %>
+    <p>Favorite beer style is <%= @user.favorite_style %></p>
+<% end %>
+<% if @user.favorite_brewery %>
+    <p>Favorite brewery is <%= @user.favorite_brewery.name %></p>
+<% end %>
 
 <h2>Beer clubs</h2>
 <ul>
@@ -28,6 +33,6 @@
 </ul>
 
 <% if @user == current_user %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
+    <%= link_to 'Destroy', @user, method: :delete, data: {confirm: 'Are you sure?'} %>
 <% end %>
