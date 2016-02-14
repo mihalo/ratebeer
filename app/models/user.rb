@@ -21,5 +21,16 @@ class User < ActiveRecord::Base
     ratings.joins(:beer).group(:style).average(:score).max_by { |k, v| v }.first
   end
 
+  def favorite_brewery
+    return nil if ratings.empty?
+    ratings.group_by { |r| r.beer.brewery }.map {
+        |k, v| [k, sequence_rating_average(v)]
+    }.max_by { |k, v| v }.first
+  end
+
+  def sequence_rating_average(ratings)
+    return nil if ratings.empty?
+    ratings.inject(0.0) { |sum, r| sum+r.score } / ratings.count
+  end
 
 end
