@@ -31,6 +31,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'httparty'
+
 ruby '2.3.0'
 
 # Use SCSS for stylesheets
