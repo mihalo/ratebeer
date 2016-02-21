@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :ratings, only: [:index, :new, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
 
-  get 'places', to: 'places#index'
-  post 'places', to:'places#search'
+  resources :places, only: [:index, :show]
+  post 'places', to: 'places#search'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

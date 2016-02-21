@@ -27,10 +27,15 @@ describe "Places" do
   end
 
   it "if none is returned by the API, it is shown at the page" do
+    allow(BeermappingApi).to receive(:places_in).with("empty").and_return(
+        []
+    )
+
     visit places_path
     fill_in('city', with: 'empty')
     click_button "Search"
 
     expect(page).to have_content "No locations in empty"
+
   end
 end

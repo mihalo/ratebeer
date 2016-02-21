@@ -9,7 +9,7 @@
     <table>
       <thead>
       <% Place.rendered_fields.each do |f| %>
-          <td><%=f %></td>
+          <td><%= f %></td>
       <% end %>
       </thead>
       <% @places.each do |place| %>
@@ -20,4 +20,10 @@
           </tr>
       <% end %>
     </table>
+<% end %>
+
+<% if @places %>
+    <% @places.each do |place| %>
+        <%= link_to place.name, place_path(place.id) %><br>
+    <% end %>
 <% end %>
