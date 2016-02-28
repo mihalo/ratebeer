@@ -32,6 +32,11 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'bootstrap-sass', '~> 3.2.0'
+group :development do
+  gem 'rails_layout'
+end
+
 gem 'httparty'
 
 ruby '2.3.0'
