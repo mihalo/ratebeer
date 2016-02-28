@@ -16,7 +16,7 @@
     <% else %>
         <%= form_for @membership, method: :delete do |f| %>
             <%= f.hidden_field :beer_club_id %>
-            <%= f.submit value: "end the membership" %>
+            <%= f.submit value: "end the membership", class: 'btn btn-xs btn-danger' %>
         <% end %>
     <% end %>
 <% end %>
@@ -29,4 +29,4 @@
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_beer_club_path(@beer_club) %>
+<%= link_to 'Edit', edit_beer_club_path(@beer_club), class: 'btn btn-xs btn-default' %>

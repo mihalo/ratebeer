@@ -16,12 +16,12 @@
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :name) %>
+      <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :name), class: 'form-control' %>
     </div>
     <div class="field">
       <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name) %>
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit class: 'btn btn-xs btn-success' %>
     </div>
 <% end %>

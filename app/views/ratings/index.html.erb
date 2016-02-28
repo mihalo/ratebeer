@@ -12,7 +12,7 @@
   <% @ratings.each do |rating| %>
       <tr>
         <td><%= link_to rating, rating %></td>
-        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
       </tr>
   <% end %>
   </tbody>

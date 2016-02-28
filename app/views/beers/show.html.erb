@@ -2,7 +2,7 @@
 
 <p>
   <strong>Style:</strong>
-  <%= @beer.style %>
+  <%= @beer.style.name %>
 </p>
 
 <% if @beer.ratings.empty? %>
@@ -18,9 +18,9 @@
     <%= form_for(@rating) do |f| %>
         <%= f.hidden_field :beer_id %>
         score: <%= f.number_field :score %>
-        <%= f.submit %>
+        <%= f.submit class:'btn btn-xs btn-success' %>
     <% end %>
 
-    <%= link_to 'Edit', edit_beer_path(@beer) %>
+    <%= link_to 'Edit', edit_beer_path(@beer), class:'btn btn-xs btn-default' %>
 
 <% end %>
