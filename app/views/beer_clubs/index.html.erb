@@ -1,9 +1,5 @@
 <h2>List of beer clubs</h2>
 
-<p>
-  <%= link_to 'New beer club', new_beer_club_path %>
-</p>
-
 <p>Number of beer clubs <%= @beer_clubs.count %></p>
 
 
@@ -24,3 +20,5 @@
   <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New beer club', new_beer_club_path, class:"btn btn-xs btn-primary" %>

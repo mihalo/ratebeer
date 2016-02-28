@@ -32,7 +32,7 @@ describe "Ratings" do
       FactoryGirl.create :rating, user: user, beer: beer2, score:20
       FactoryGirl.create :rating, user: user, beer: beer2, score:30
     end
-    
+
     it "are shown on raters page" do
       arto = FactoryGirl.create :user, username: "arto"
       FactoryGirl.create :rating, user: arto, beer: beer1, score:40
