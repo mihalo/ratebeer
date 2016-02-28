@@ -5,7 +5,6 @@ describe "Breweries page" do
     visit breweries_path
     expect(page).to have_content 'Listing Breweries'
     expect(page).to have_content 'Number of breweries: 0'
-
   end
 
   describe "when breweries exists" do
@@ -15,6 +14,7 @@ describe "Breweries page" do
       @breweries.each do |brewery_name|
         FactoryGirl.create(:brewery, name: brewery_name, year: year += 1)
       end
+
       visit breweries_path
     end
 
@@ -27,7 +27,6 @@ describe "Breweries page" do
 
     it "allows user to navigate to page of a Brewery" do
       click_link "Koff"
-
       expect(page).to have_content "Koff"
       expect(page).to have_content "Established in 1897"
     end

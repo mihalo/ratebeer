@@ -16,21 +16,31 @@ class User < ActiveRecord::Base
     ratings.order(score: :desc).limit(1).first.beer
   end
 
+
   def favorite_style
     return nil if ratings.empty?
-    ratings.joins(:beer).group(:style).average(:score).max_by { |k, v| v }.first
+
+    rated = ratings.map{ |r| r.beer.style }.uniq
+    rated.sort_by { |style| -rating_of_style(style) }.first
   end
 
   def favorite_brewery
     return nil if ratings.empty?
-    ratings.group_by { |r| r.beer.brewery }.map {
-        |k, v| [k, sequence_rating_average(v)]
-    }.max_by { |k, v| v }.first
+
+    rated = ratings.map{ |r| r.beer.brewery }.uniq
+    rated.sort_by { |brewery| -rating_of_brewery(brewery) }.first
   end
 
-  def sequence_rating_average(ratings)
-    return nil if ratings.empty?
-    ratings.inject(0.0) { |sum, r| sum+r.score } / ratings.count
+  private
+
+  def rating_of_style(style)
+    ratings_of = ratings.select{ |r| r.beer.style==style }
+    ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
+  end
+
+  def rating_of_brewery(brewery)
+    ratings_of = ratings.select{ |r| r.beer.brewery==brewery }
+    ratings_of.map(&:score).inject(&:+) / ratings_of.count.to_f
   end
 
 end

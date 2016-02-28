@@ -4,7 +4,7 @@
 
 <p>Has made <%= @user.ratings.count %> ratings, average <%= @user.average_rating %></p>
 <% if @user.favorite_beer %>
-    <p>Favorite beer style is <%= @user.favorite_style %></p>
+    <p>Favorite beer style is <%= @user.favorite_style.name %></p>
 <% end %>
 <% if @user.favorite_brewery %>
     <p>Favorite brewery is <%= @user.favorite_brewery.name %></p>
