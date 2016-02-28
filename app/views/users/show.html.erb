@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @user.username %></h1>
+<% if @user.ban %>
+    <button class="btn btn-xs btn-primary">account frozen</button>
+<% end %>
 
 <p>Has made <%= @user.ratings.count %> ratings, average <%= round(@user.average_rating) %></p>
 <% if @user.favorite_beer %>
@@ -35,4 +38,12 @@
 <% if @user == current_user %>
     <%= link_to 'Edit', edit_user_path(@user) %> |
     <%= link_to 'Destroy', @user, method: :delete, data: {confirm: 'Are you sure?'} %>
+<% end %>
+
+<% if current_user.admin %>
+    <% if @user.ban %>
+        <%= link_to "reactive account", toggle_ban_user_path(@user.id), method: :post, class: "btn btn-xs btn-success" %>
+    <% else %>
+        <%= link_to "froze account", toggle_ban_user_path(@user.id), method: :post, class: "btn btn-xs btn-danger" %>
+    <% end %>
 <% end %>

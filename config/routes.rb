@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :styles
   resources :beer_clubs
   resources :memberships
-  resources :users
+
+  resources :users do
+    post 'toggle_ban', on: :member
+  end
+
   resource :session, only: [:new, :create, :destroy]
 
   get 'signup', to: 'users#new'
@@ -17,8 +21,8 @@ Rails.application.routes.draw do
 
   resources :ratings, only: [:index, :new, :create, :destroy]
 
-  resources :places, only:[:index, :show]
-  post 'places', to:'places#search'
+  resources :places, only: [:index, :show]
+  post 'places', to: 'places#search'
 
   root 'breweries#index'
 
