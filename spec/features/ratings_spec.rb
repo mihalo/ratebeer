@@ -32,15 +32,7 @@ describe "Ratings" do
       FactoryGirl.create :rating, user: user, beer: beer2, score:20
       FactoryGirl.create :rating, user: user, beer: beer2, score:30
     end
-
-    it "those and their count are shown at the ratings page" do
-      visit ratings_path
-      expect(page).to have_content "Number of ratings 3"
-      expect(page).to have_content "iso 3 10"
-      expect(page).to have_content "Karhu 20"
-      expect(page).to have_content "Karhu 20"
-    end
-
+    
     it "are shown on raters page" do
       arto = FactoryGirl.create :user, username: "arto"
       FactoryGirl.create :rating, user: arto, beer: beer1, score:40
