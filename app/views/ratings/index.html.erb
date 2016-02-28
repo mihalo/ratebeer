@@ -1,19 +1,105 @@
-<h2>List of ratings</h2>
+<h2>Rating statistics</h2>
+
+<div class="col-sm-4">
+  <h2>Best beers</h2>
+  <table class="table table-hover">
+    <thead>
+    <th></th>
+    <th>average</th>
+    </thead>
+
+    <tbody>
+    <% @top_beers.each do |beer| %>
+        <tr>
+          <td><%= link_to beer.name, beer %></td>
+          <td><%= beer.average_rating %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-sm-4">
+  <h2>Best breweries</h2>
+
+  <table class="table table-hover">
+    <thead>
+    <th></th>
+    <th>average</th>
+    </thead>
+
+    <tbody>
+    <% @top_breweries.each do |brewery| %>
+        <tr>
+          <td><%= link_to brewery.name, brewery %></td>
+          <td><%= brewery.average_rating %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-sm-4">
+  <h2>Best styles</h2>
+  <table class="table table-hover">
+    <thead>
+    <th></th>
+    <th>average</th>
+    </thead>
+
+    <tbody>
+    <% @top_styles.each do |style| %>
+        <tr>
+          <td><%= link_to style.name, style %></td>
+          <td><%= style.average_rating %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h2>Most active users</h2>
+<table class="table table-hover">
+  <thead>
+  <th></th>
+  <th>favorite beer</th>
+  <th>prefered style</th>
+  <th>favorite brewery</th>
+  <th>ratings</th>
+  </thead>
+
+  <tbody>
+  <% @top_users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user %></td>
+        <td><%= user.favorite_beer %></td>
+        <td>
+          <% if user.favorite_style %>
+              <%= user.favorite_style.name %>
+          <% end %>
+        </td>
+        <td>
+          <% if user.favorite_brewery %>
+              <%= user.favorite_brewery.name %>
+          <% end %>
+        </td>
+        <td><%= user.ratings.count %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Recent ratings</h2>
+<ul>
+  <% @recent_ratings.each do |rating| %>
+      <li><%= rating %> <%= link_to rating.user.username, rating.user %></li>
+  <% end %>
+</ul>
+
 
 <p>
   <%= link_to 'New Rating', new_rating_path %>
 </p>
 
-<p>Number of ratings <%= @ratings.count %></p>
 
-<table class="table table-hover">
 
-  <tbody>
-  <% @ratings.each do |rating| %>
-      <tr>
-        <td><%= link_to rating, rating %></td>
-        <td><%= link_to 'Destroy', rating, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
