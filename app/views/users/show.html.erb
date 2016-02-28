@@ -2,7 +2,7 @@
 
 <h1><%= @user.username %></h1>
 
-<p>Has made <%= @user.ratings.count %> ratings, average <%= @user.average_rating %></p>
+<p>Has made <%= @user.ratings.count %> ratings, average <%= round(@user.average_rating) %></p>
 <% if @user.favorite_beer %>
     <p>Favorite beer style is <%= @user.favorite_style.name %></p>
 <% end %>
