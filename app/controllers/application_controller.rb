@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path, notice: 'you should be signed in' if current_user.nil?
   end
 
+  def ensure_that_user_is_admin
+    redirect_to users_path, notice: 'you should be admin' if !current_user.admin
+  end
+
 end
