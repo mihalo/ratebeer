@@ -10,6 +10,9 @@ module ApplicationHelper
   end
 
   def round(param)
+    if param.nil?
+      0.0
+    end
     number_with_precision(param, precision: 1)
   end
 
