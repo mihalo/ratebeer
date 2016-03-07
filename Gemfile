@@ -37,6 +37,9 @@ group :development do
   gem 'rails_layout'
 end
 
+gem 'jquery-turbolinks'
+
+
 gem 'httparty'
 
 ruby '2.3.0'
