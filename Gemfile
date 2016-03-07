@@ -39,6 +39,9 @@ end
 
 gem 'jquery-turbolinks'
 
+gem 'selenium-webdriver'
+gem 'database_cleaner'
+
 
 gem 'httparty'
 
