@@ -54,7 +54,7 @@ describe "beerlist page" do
     visit beerlist_path
     click_link('style')
     click_link('name')
-    
+
     expect(page.all('tr')[1].text).to have_content "Fastenbier"
     expect(page.all('tr')[2].text).to have_content "Lechte Weisse"
   end
